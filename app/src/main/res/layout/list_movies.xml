@@ -16,18 +16,78 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:layout_width="200dp"
-                android:layout_height="250dp"
-                android:id="@+id/img_Movies"
-                android:scaleType="centerCrop"
-                android:src="@drawable/ico"/>
+                android:layout_width="160dp"
+                android:layout_height="235dp"
+                android:id="@+id/imgTitleFilm"
+                android:src="@drawable/ico"
+                android:scaleType="centerCrop"/>
+
+
+            <CheckBox
+                android:id="@+id/cbStars"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="?android:attr/starStyle"
+                android:layout_alignParentTop="true"
+                android:layout_alignRight="@+id/imgTitleFilm"
+                android:layout_alignEnd="@+id/imgTitleFilm" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvTitleCategoriesPopular"
+                android:text="Title"
+                android:layout_below="@+id/imgTitleFilm"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/imgLike"
+                android:layout_below="@+id/tvTitleCategoriesPopular"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:src="@drawable/like"/>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tv_TitleMovies"
-                android:text="Title"
-                android:layout_below="@+id/img_Movies"/>
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="tvLike"
+                android:id="@+id/tvLike"
+                android:layout_alignBottom="@+id/imgLike"
+                android:layout_toRightOf="@+id/imgLike"
+                android:layout_toEndOf="@+id/imgLike" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/unlike"
+                android:layout_alignBottom="@+id/tvLike"
+                android:layout_toRightOf="@+id/tvLike"
+                android:layout_toEndOf="@+id/tvLike" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="tvUnlike"
+                android:id="@+id/tvUnlike"
+                android:layout_above="@+id/tvDataCategoriesPopular"
+                android:layout_toRightOf="@+id/imageView"
+                android:layout_toEndOf="@+id/imageView" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDataCategoriesPopular"
+                android:text="Data"
+                android:layout_below="@id/imgLike"
+                android:layout_alignRight="@+id/imgTitleFilm"
+                android:layout_alignEnd="@+id/imgTitleFilm" />
+
 
         </RelativeLayout>
 

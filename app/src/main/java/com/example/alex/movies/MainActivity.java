@@ -1,6 +1,7 @@
 package com.example.alex.movies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -18,7 +19,7 @@ import android.view.View;
 import android.widget.ProgressBar;
 
 import com.example.alex.movies.models.Constants;
-import com.example.alex.movies.parsed.ParsedAllMovies;
+import com.example.alex.movies.parsed.ParsedMoviesCategories;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -38,7 +39,7 @@ public class MainActivity extends AppCompatActivity
         initView();
         setSupportActionBar(toolbar);
 
-        initIO();
+        initIO(Constants.URL_POPULAR_CATEGORIES);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -57,8 +58,8 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
     }
 
-    private void initIO() {
-        ParsedAllMovies.initializeData(Constants.MOVIES_2015_YEAR);
+    private void initIO(String url) {
+        ParsedMoviesCategories.initializeData(url);
         rvMovies.setHasFixedSize(true);
         rvMovies.setLayoutManager(new GridLayoutManager(this, 2));
     }
@@ -71,6 +72,11 @@ public class MainActivity extends AppCompatActivity
         rvMovies = (RecyclerView) findViewById(R.id.rvMovies);
         pbMovies = (ProgressBar) findViewById(R.id.pbMovies);
         context = getApplicationContext();
+    }
+
+    public void initIOFilm(){
+        Intent intent = new Intent(context, MovieActivity.class);
+        startActivity(intent);
     }
 
     @Override
@@ -104,18 +110,13 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if (id == R.id.nav_camara) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
+        switch (id){
+            case R.id.nav_top_100_movies:
+                initIO(Constants.URL_DATE_OF_RENOVATION);
+                break;
+            case R.id.nav_this_year_movies:
+                initIO(Constants.URL_BY_RATING);
+                break;
         }
 
         drawer.closeDrawer(GravityCompat.START);
