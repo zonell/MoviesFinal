@@ -47,11 +47,4 @@
         android:layout_toRightOf="@+id/imgTitleFilm"
         android:layout_toEndOf="@+id/imgTitleFilm" />
 
-    <ProgressBar
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/pbFilm"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
-
 </RelativeLayout>

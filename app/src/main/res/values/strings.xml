@@ -7,6 +7,10 @@
     <string name="action_settings">Settings</string>
     <string name="top_100_movies">Топ 100 фильмов</string>
     <string name="top_this_year_movies">Лучшие за этот год</string>
-    <string name="data_of_renovation">По дате добавления</string>
+    <string name="data_of_renovation">По дате обновления</string>
+    <string name="by_year_of_production">По дате выхода</string>
     <string name="by_rating">По рейтингу</string>
+    <string name="by_popular">По популярности</string>
+    <string name="in_trend">В тренде</string>
+    <string name="favorite">Избранные</string>
 </resources>

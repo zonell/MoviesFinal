@@ -3,11 +3,23 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_top_100_movies"
+            android:id="@+id/nav_data_of_renovation"
             android:title="@string/data_of_renovation" />
         <item
-            android:id="@+id/nav_this_year_movies"
+            android:id="@+id/nav_by_rating"
             android:title="@string/by_rating" />
+        <item
+            android:id="@+id/nav_by_year_of_production"
+            android:title="@string/by_year_of_production" />
+        <item
+            android:id="@+id/nav_by_popular"
+            android:title="@string/by_popular" />
+        <item
+            android:id="@+id/nav_in_trend"
+            android:title="@string/in_trend" />
+        <item
+            android:id="@+id/nav_favorite"
+            android:title="@string/favorite" />
     </group>
 
     <item android:title="Communicate">

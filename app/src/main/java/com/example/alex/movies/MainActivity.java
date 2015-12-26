@@ -17,6 +17,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.example.alex.movies.models.Constants;
 import com.example.alex.movies.parsed.ParsedMoviesCategories;
@@ -64,7 +65,7 @@ public class MainActivity extends AppCompatActivity
         rvMovies.setLayoutManager(new GridLayoutManager(this, 2));
     }
 
-    private void initView(){
+    private void initView() {
         fab = (FloatingActionButton) findViewById(R.id.fab);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -74,8 +75,8 @@ public class MainActivity extends AppCompatActivity
         context = getApplicationContext();
     }
 
-    public void initIOFilm(){
-        Intent intent = new Intent(context, MovieActivity.class);
+    public void initIOFilm() {
+        Intent intent = new Intent(MainActivity.this, MovieActivity.class);
         startActivity(intent);
     }
 
@@ -110,12 +111,29 @@ public class MainActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
-            case R.id.nav_top_100_movies:
+        switch (id) {
+            case R.id.nav_data_of_renovation:
                 initIO(Constants.URL_DATE_OF_RENOVATION);
+                Toast.makeText(getApplicationContext(), "Click \"Data of renovation\"", Toast.LENGTH_SHORT).show();
                 break;
-            case R.id.nav_this_year_movies:
+            case R.id.nav_by_rating:
                 initIO(Constants.URL_BY_RATING);
+                Toast.makeText(getApplicationContext(), "Click \"By rating\"", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_by_year_of_production:
+                initIO(Constants.URL_BY_YEAR_OF_PRODUCTION);
+                Toast.makeText(getApplicationContext(), "Click \"By year of production\"", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_by_popular:
+                initIO(Constants.URL_POPULAR_CATEGORIES);
+                Toast.makeText(getApplicationContext(), "Click \"Popular\"", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_in_trend:
+                initIO(Constants.URL_IN_TREND);
+                Toast.makeText(getApplicationContext(), "Click \"In Trend\"", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_favorite:
+                Toast.makeText(getApplicationContext(), "\"Favorite\" add a new version", Toast.LENGTH_SHORT).show();
                 break;
         }
 
