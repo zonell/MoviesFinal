@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:background="@color/white"
+    tools:context="com.example.alex.movies.MoviesActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:id="@+id/scrollView">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:layout_width="160dp"
+                android:layout_height="235dp"
+                android:id="@+id/imgTitleFilm"
+                android:src="@drawable/ico"
+                android:scaleType="centerCrop"/>
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/imgLike"
+                android:src="@drawable/like"
+                android:layout_below="@+id/tvTitleRu"
+                android:layout_alignLeft="@+id/tvTitleRu"
+                android:layout_alignStart="@+id/tvTitleRu"
+                android:layout_marginTop="21dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="tvLike"
+                android:id="@+id/tvLike"
+                android:layout_alignBottom="@+id/imgLike"
+                android:layout_toRightOf="@+id/imgLike"
+                android:layout_toEndOf="@+id/imgLike" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="#003cff"
+                android:text="Title RU"
+                android:id="@+id/tvTitleRu"
+                android:layout_alignParentTop="true"
+                android:layout_toRightOf="@+id/imgTitleFilm"
+                android:layout_toEndOf="@+id/imgTitleFilm" />
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:id="@+id/imageView"
+                android:src="@drawable/unlike"
+                android:layout_below="@+id/imgLike"
+                android:layout_alignLeft="@+id/imgLike"
+                android:layout_alignStart="@+id/imgLike" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:text="tvUnlike"
+                android:id="@+id/tvUnlike"
+                android:layout_alignBottom="@+id/imageView"
+                android:layout_alignLeft="@+id/tvLike"
+                android:layout_alignStart="@+id/tvLike" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textSize="14sp"
+                android:text="Text film"
+                android:id="@+id/tvTxtFilm"
+                android:layout_below="@+id/imgTitleFilm"
+                android:paddingBottom="5sp"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/tvDataCategories"
+                android:text="Data"
+                android:layout_below="@+id/tvTxtFilm"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentEnd="true" />
+
+        </RelativeLayout>
+
+    </ScrollView>
+
+
+
+</RelativeLayout>

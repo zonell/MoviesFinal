@@ -2,26 +2,25 @@ package com.example.alex.movies;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.alex.movies.models.Movie;
 import com.squareup.picasso.Picasso;
 
-public class MovieActivity extends AppCompatActivity {
+public class MoviesActivity extends AppCompatActivity {
     public static Movie moviesBuilder;
     private static TextView tvTitleRu;
-    private static TextView tvTitleEn;
     private static TextView tvTxtFilm;
+    private static TextView tvLike;
+    private static TextView tvUnlike;
     private static ImageView imgTitleFilm;
+    private static TextView data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_film);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        setContentView(R.layout.activity_movies);
 
         initView();
         initIO();
@@ -29,18 +28,19 @@ public class MovieActivity extends AppCompatActivity {
 
     private void initView(){
         tvTitleRu = (TextView) findViewById(R.id.tvTitleRu);
-        tvTitleEn = (TextView) findViewById(R.id.tvTitleEn);
+        tvLike = (TextView) findViewById(R.id.tvLike);
+        tvUnlike = (TextView) findViewById(R.id.tvUnlike);
         tvTxtFilm = (TextView) findViewById(R.id.tvTxtFilm);
         imgTitleFilm = (ImageView) findViewById(R.id.imgTitleFilm);
+        data = (TextView) findViewById(R.id.tvDataCategories);
     }
 
     public static void initIO(){
         tvTitleRu.setText(moviesBuilder.titleRu);
-        tvTitleEn.setText(moviesBuilder.titleEn);
+        tvLike.setText(moviesBuilder.like);
+        tvUnlike.setText(moviesBuilder.unlike);
         tvTxtFilm.setText(moviesBuilder.txtFilm);
+        data.setText(moviesBuilder.data);
         Picasso.with(MainActivity.context).load(moviesBuilder.urlImg).into(imgTitleFilm);
     }
-
-
-
 }

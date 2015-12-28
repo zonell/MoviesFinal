@@ -32,7 +32,7 @@ public class ParsedMoviesCategories {
     private static ArrayList<String> likeList = new ArrayList<>();
     private static ArrayList<String> unlikeList = new ArrayList<>();
 
-    public static MoviesAdapter moviesAdapter = new MoviesAdapter();
+    public static MoviesAdapter moviesAdapter = new MoviesAdapter(MainActivity.context);
 
     public static void initializeData(String url) {
         new NewTreadParsed(url).execute();
