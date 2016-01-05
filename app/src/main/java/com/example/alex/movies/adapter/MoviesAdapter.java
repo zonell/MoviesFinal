@@ -104,13 +104,14 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
         Log.d(LOG, "row inserted, ID = " + rowID);
 
         MainActivity.dbHelper.close();
+
     }
 
     private void deleteFromDB(int position){
         db = MainActivity.dbHelper.getWritableDatabase();
 
         String[] whereArgs = {String.valueOf(categories.get(position).title)};
-        db.delete(Constants.TABLE_MOVIE, Constants.FIELD_TITLE, whereArgs);
+        db.delete(Constants.TABLE_MOVIE, Constants.FIELD_TITLE + " = ?", whereArgs);
 
         db.close();
     }
