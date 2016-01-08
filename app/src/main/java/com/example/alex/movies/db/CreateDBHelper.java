@@ -6,8 +6,8 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import com.example.alex.movies.models.Constants;
 
-public class DBHelper  extends SQLiteOpenHelper{
-    public DBHelper(Context context) {
+public class CreateDBHelper extends SQLiteOpenHelper{
+    public CreateDBHelper(Context context) {
         super(context, "myDB", null, 1);
     }
 

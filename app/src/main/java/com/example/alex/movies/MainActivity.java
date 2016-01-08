@@ -1,8 +1,6 @@
 package com.example.alex.movies;
 
 import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -20,9 +18,8 @@ import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
-import com.example.alex.movies.adapter.MoviesAdapter;
-import com.example.alex.movies.db.DBHelper;
-import com.example.alex.movies.models.Categories;
+import com.example.alex.movies.db.CreateDBHelper;
+import com.example.alex.movies.db.OpenDBHelper;
 import com.example.alex.movies.models.Constants;
 import com.example.alex.movies.parsed.ParsedMoviesCategories;
 
@@ -37,8 +34,8 @@ public class MainActivity extends AppCompatActivity
     public static ProgressBar pbMovies;
     public static Context context;
 
-    public static DBHelper dbHelper;
-    public static SQLiteDatabase db;
+    public static CreateDBHelper dbHelper;
+    private OpenDBHelper openDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity
         pbMovies = (ProgressBar) findViewById(R.id.pbMovies);
         context = getApplicationContext();
 
-        dbHelper = new DBHelper(this);
+        dbHelper = new CreateDBHelper(this);
     }
 
     @Override
@@ -137,7 +134,7 @@ public class MainActivity extends AppCompatActivity
                 Toast.makeText(getApplicationContext(), "Click \"In Trend\"", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.nav_favorite:
-                readDB();
+                openDBHelper.read();
                 rvMovies.setHasFixedSize(true);
                 rvMovies.setLayoutManager(new GridLayoutManager(this, 2));
                 rvMovies.setAdapter(ParsedMoviesCategories.moviesAdapter);
@@ -147,34 +144,6 @@ public class MainActivity extends AppCompatActivity
 
         drawer.closeDrawer(GravityCompat.START);
         return true;
-    }
-
-    private static void readDB(){
-        db = dbHelper.getWritableDatabase();
-        MoviesAdapter.categories.clear();
-
-        Cursor c = db.query(Constants.TABLE_MOVIE, null, null, null, null, null, null);
-
-        if (c.moveToFirst()) {
-            int titleColIndex = c.getColumnIndex("title");
-            int likeColIndex = c.getColumnIndex("like");
-            int unlikeColIndex = c.getColumnIndex("unlike");
-            int imgColIndex = c.getColumnIndex("poster");
-            int infoColIndex = c.getColumnIndex("info");
-            int dataColIndex = c.getColumnIndex("data");
-
-            do {
-                MoviesAdapter.categories.add(new Categories(
-                        c.getString(titleColIndex),
-                        c.getString(dataColIndex),
-                        c.getString(imgColIndex),
-                        c.getString(likeColIndex),
-                        c.getString(unlikeColIndex),
-                        c.getString(infoColIndex)));
-            } while (c.moveToNext());
-
-        } else
-        c.close();
     }
 }
 

@@ -20,6 +20,7 @@ public class ParsedMovie {
     private static String unlike;
     private static String urlImgs;
     private static String data;
+    private static String urlMovies;
 
     public static void initFilmData(String url, Categories categories){
         new NewThreadParsed(url, categories).execute();
@@ -45,11 +46,12 @@ public class ParsedMovie {
                 txtFilms = doc.select("p").first().text();
                 urlImgs = categories.urlImg;
                 data = categories.data;
+                urlMovies ="http://fs.to" + doc.select("div.b-view-material > a[href]").attr("href").toString();
 
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            Movie moviesBuilder = new Movie(titleRus, like, unlike, txtFilms, urlImgs, data);
+            Movie moviesBuilder = new Movie(titleRus, like, unlike, txtFilms, urlImgs, data, urlMovies);
 
             return moviesBuilder;
         }

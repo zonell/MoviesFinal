@@ -1,7 +1,10 @@
 package com.example.alex.movies;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -42,5 +45,10 @@ public class MoviesActivity extends AppCompatActivity {
         tvTxtFilm.setText(moviesBuilder.txtFilm);
         data.setText(moviesBuilder.data);
         Picasso.with(MainActivity.context).load(moviesBuilder.urlImg).into(imgTitleFilm);
+    }
+
+    public void onViewMovies(View view) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(moviesBuilder.urlMovies));
+        startActivity(intent);
     }
 }
