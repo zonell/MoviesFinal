@@ -20,11 +20,4 @@ public class Constants {
 
     public static List<Categories> CATEGORIES = new ArrayList<>();
 
-    public static final int PARSED_CONSTANT_IMG_MOVIES = 1;
-
-
-    public static final int PARSED_CONSTANT_WATCH_MOVIE = 59;
-
-    public static final int START_PARSED_URL_FILM = 56;
-    public static final int END_PARSED_URL_FILM = 74;
 }

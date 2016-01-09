@@ -6,7 +6,6 @@ import android.widget.ProgressBar;
 import com.example.alex.movies.MainActivity;
 import com.example.alex.movies.adapter.MoviesAdapter;
 import com.example.alex.movies.models.Categories;
-import com.example.alex.movies.models.Constants;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -20,10 +19,8 @@ import java.util.List;
 public class ParsedMoviesCategories {
     private static Elements titleTxt;
     private static Elements dataTxt;
-    private static Element imgUrl;
     private static Elements like;
     private static Elements unlike;
-    private static Element urlInfoFilms;
 
     private static ArrayList<String> titleList = new ArrayList<>();
     private static ArrayList<String> dataList = new ArrayList<>();
@@ -68,13 +65,11 @@ public class ParsedMoviesCategories {
                 for (Element contents : dataTxt) {
                     dataList.add(contents.text());
                 }
-                for (int i = Constants.PARSED_CONSTANT_IMG_MOVIES; i < dataList.size() + Constants.PARSED_CONSTANT_IMG_MOVIES; i++) {
-                    imgUrl = docTxt.select("img").get(i);
-                    urlList.add(imgUrl.attr("abs:src"));
+                for (int i = 0; i < dataList.size(); i++) {
+                    urlList.add("http:" + docTxt.select("span.b-poster-tile__image > img[src]").get(i).attr("src").toString());
                 }
-                for (int i = Constants.START_PARSED_URL_FILM; i < Constants.END_PARSED_URL_FILM; i++) {
-                    urlInfoFilms = docTxt.select("tbody").select("a").get(i);
-                    urlInfoFilmsList.add("http://fs.to" + urlInfoFilms.attr("href"));
+                for (int i = 0; i < dataList.size(); i++) {
+                    urlInfoFilmsList.add("http://fs.to" + docTxt.select("div.b-poster-tile    > a[href]").get(i).attr("href").toString());
                 }
                 for (Element contents : like) {
                     likeList.add(contents.text());

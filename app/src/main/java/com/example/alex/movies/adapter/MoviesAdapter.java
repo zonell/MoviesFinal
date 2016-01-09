@@ -12,7 +12,6 @@ import android.widget.Toast;
 
 import com.example.alex.movies.MainActivity;
 import com.example.alex.movies.R;
-import com.example.alex.movies.db.OpenDBHelper;
 import com.example.alex.movies.models.Categories;
 import com.example.alex.movies.models.Constants;
 import com.example.alex.movies.parsed.ParsedMovie;
@@ -27,7 +26,6 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
 
     public static List<Categories> categories;
     private Context context;
-    private OpenDBHelper dbHelper;
 
 
     public MoviesAdapter(Context context) {
@@ -59,11 +57,11 @@ public class MoviesAdapter extends RecyclerView.Adapter<MoviesAdapter.MoviesView
                 editor.putBoolean(categories.get(position).title, holder.cbStars.isChecked());
                 editor.apply();
                 if (holder.cbStars.isChecked()) {
-                    dbHelper.save(position);
+                    MainActivity.openDBHelper.save(position);
                     Toast.makeText(MainActivity.context, "save", Toast.LENGTH_SHORT).show();
                     Constants.CATEGORIES.add(categories.get(position));
                 } else {
-                    dbHelper.delete(position);
+                    MainActivity.openDBHelper.delete(position);
                     Toast.makeText(MainActivity.context, "delete", Toast.LENGTH_SHORT).show();
                     Constants.CATEGORIES.remove(categories.get(position));
                 }

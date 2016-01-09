@@ -12,6 +12,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity
     public static Context context;
 
     public static CreateDBHelper dbHelper;
-    private OpenDBHelper openDBHelper;
+    public static OpenDBHelper openDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,6 +62,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
+        Log.d("DBHelper","=========================================================================================================================================");
     }
 
     private void initIO(String url) {
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity
         context = getApplicationContext();
 
         dbHelper = new CreateDBHelper(this);
+        openDBHelper = new OpenDBHelper();
     }
 
     @Override
