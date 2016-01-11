@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.alex.movies.MainActivity;
 import com.example.alex.movies.adapter.MoviesAdapter;
+import com.example.alex.movies.interfasec.IDBHelper;
 import com.example.alex.movies.models.Categories;
 import com.example.alex.movies.models.Constants;
 
@@ -56,8 +57,8 @@ public class OpenDBHelper implements IDBHelper {
         cv.put(Constants.FIELD_URL_MOVIES_INFO, MoviesAdapter.categories.get(position).urlFilmInfo);
         cv.put(Constants.FIELD_DATA, MoviesAdapter.categories.get(position).data);
 
-        long rowID = db.insert(Constants.TABLE_MOVIE, null, cv);
-        Log.d("DBHelper", "SAVE row inserted, ID = " + rowID + ", " + MoviesAdapter.categories.get(position).title);
+        long size = db.insert(Constants.TABLE_MOVIE, null, cv);
+        Log.d("DBHelper", "SAVE row inserted, size " + size + " ID = , " + MoviesAdapter.categories.get(position).title);
 
         MainActivity.dbHelper.close();
     }

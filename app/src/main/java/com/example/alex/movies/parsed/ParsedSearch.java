@@ -1,9 +1,10 @@
 package com.example.alex.movies.parsed;
 
 import android.os.AsyncTask;
-import android.widget.ProgressBar;
+import android.view.View;
 
 import com.example.alex.movies.MainActivity;
+import com.example.alex.movies.SearchActivity;
 import com.example.alex.movies.adapter.MoviesAdapter;
 import com.example.alex.movies.models.Categories;
 
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ParsedMoviesCategories {
+public class ParsedSearch {
     private static Elements titleTxt;
     private static Elements dataTxt;
     private static Elements like;
@@ -48,10 +49,10 @@ public class ParsedMoviesCategories {
             List<Categories> categories = new ArrayList<>();
             try {
                 docTxt = Jsoup.connect(url).get();
-                titleTxt = docTxt.select(".b-poster-tile__title-full");
+                titleTxt = docTxt.select(".b-search-page__results-item-title");
                 dataTxt = docTxt.select(".b-poster-tile__title-info-items");
-                like = docTxt.select(".b-poster-tile__title-info-vote-positive");
-                unlike = docTxt.select(".b-poster-tile__title-info-vote-negative");
+                like = docTxt.select(".b-search-page__results-item-rating-positive");
+                unlike = docTxt.select(".b-search-page__results-item-rating-negative");
                 titleList.clear();
                 dataList.clear();
                 urlList.clear();
@@ -66,10 +67,10 @@ public class ParsedMoviesCategories {
                     dataList.add(contents.text());
                 }
                 for (int i = 0; i < titleList.size(); i++) {
-                    urlList.add("http:" + docTxt.select("span.b-poster-tile__image > img[src]").get(i).attr("src").toString());
+                    urlList.add("http:" + docTxt.select("span.b-search-page__results-item-image > img[src]").get(i).attr("src").toString());
                 }
                 for (int i = 0; i < titleList.size(); i++) {
-                    urlInfoFilmsList.add("http://fs.to" + docTxt.select("div.b-poster-tile    > a[href]").get(i).attr("href").toString());
+                    urlInfoFilmsList.add("http://fs.to" + docTxt.select("div.b-search-page__results > a[href]").get(i).attr("href").toString());
                 }
                 for (Element contents : like) {
                     likeList.add(contents.text());
@@ -82,7 +83,7 @@ public class ParsedMoviesCategories {
                 e.printStackTrace();
             }
             for (int i = 0; i < titleList.size(); i++) {
-                categories.add(new Categories(titleList.get(i), dataList.get(i), urlList.get(i), likeList.get(i), unlikeList.get(i), urlInfoFilmsList.get(i)));
+                categories.add(new Categories(titleList.get(i), "", urlList.get(i), likeList.get(i), unlikeList.get(i), urlInfoFilmsList.get(i)));
             }
             return categories;
         }
@@ -90,9 +91,13 @@ public class ParsedMoviesCategories {
         @Override
         protected void onPostExecute(List<Categories> categories) {
             super.onPostExecute(categories);
-            MainActivity.pbMovies.setVisibility(ProgressBar.INVISIBLE);
+            SearchActivity.pbSearch.setVisibility(View.INVISIBLE);
             MoviesAdapter.categories = categories;
-            MainActivity.rvMovies.setAdapter(moviesAdapter);
+            SearchActivity.rvMovies.setAdapter(moviesAdapter);
         }
     }
 }
+
+
+
+

@@ -1,6 +1,7 @@
 package com.example.alex.movies;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -12,8 +13,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ProgressBar;
@@ -62,7 +61,7 @@ public class MainActivity extends AppCompatActivity
         toggle.syncState();
 
         navigationView.setNavigationItemSelectedListener(this);
-        Log.d("DBHelper","=========================================================================================================================================");
+
     }
 
     private void initIO(String url) {
@@ -78,6 +77,7 @@ public class MainActivity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         rvMovies = (RecyclerView) findViewById(R.id.rvMovies);
         pbMovies = (ProgressBar) findViewById(R.id.pbMovies);
+
         context = getApplicationContext();
 
         dbHelper = new CreateDBHelper(this);
@@ -91,23 +91,6 @@ public class MainActivity extends AppCompatActivity
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
@@ -142,6 +125,10 @@ public class MainActivity extends AppCompatActivity
                 rvMovies.setLayoutManager(new GridLayoutManager(this, 2));
                 rvMovies.setAdapter(ParsedMoviesCategories.moviesAdapter);
                 Toast.makeText(getApplicationContext(), "Click \"Favorite\"", Toast.LENGTH_SHORT).show();
+                break;
+            case R.id.nav_search:
+                Intent intent = new Intent(MainActivity.this, SearchActivity.class);
+                startActivity(intent);
                 break;
         }
 

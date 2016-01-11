@@ -1,4 +1,4 @@
-package com.example.alex.movies.db;
+package com.example.alex.movies.interfasec;
 
 public interface IDBHelper {
     void read();

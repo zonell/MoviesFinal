@@ -13,4 +13,5 @@
     <string name="by_popular">По популярности</string>
     <string name="in_trend">В тренде</string>
     <string name="favorite">Избранные</string>
+    <string name="search">Поиск</string>
 </resources>
